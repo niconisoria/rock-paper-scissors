@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        const computerSelection = computerPlay();
+        const playerSelection = playerInput();
+
+        function playerInput(){
+            let playerSelection;
+            while (true){
+                playerSelection = prompt("Rock, Paper or Scissors?").toLowerCase();
+                if(playerSelection.localeCompare('rock') == 0 || playerSelection.localeCompare('paper') == 0
+                || playerSelection.localeCompare('scissors') == 0) {
+                    break;
+                }
+            }
+            return playerSelection;
+        }
+
+        function computerPlay() {
+            let random = Math.floor(Math.random() * 10 + 1);
+            if (random >= 1 && random < 3) {
+                return 'rock';
+            } else if (random >= 3 && random < 6) {
+                return 'paper';
+            }
+            return 'scissors';
+
+        }
+        
+        function playRound(playerSelection, computerSelection) {
+
+            if (playerSelection.localeCompare(computerSelection) != 0) {
+                switch (playerSelection) {
+                    case 'rock':
+                            if (computerSelection == 'scissors') {
+                                return "You win! Rock beats Scissors"
+                            }
+                            return "You lose! Paper beats Rock"
+                        break;
+                    case 'paper':
+                            if (computerSelection == 'rock') {
+                                return "You win! Paper beats Rock"
+                            }
+                            return "You lose! Scissors beats Paper"
+                        break;
+                    case 'scissors':
+                            if (computerSelection == 'paper') {
+                                return "You win! Scissors beats Paper"
+                            }
+                            return "You lose! Rock beats Scissors"
+                        break;
+                }
+            }
+            return "Draw!";
+        }
+        console.log(playRound(playerSelection, computerSelection));
+
+    </script>
+</body>
+
+</html>
