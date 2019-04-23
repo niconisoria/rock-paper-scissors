@@ -5,89 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./normalize.css">
+    <link rel="stylesheet" href="./style.css">
     <title>Document</title>
 </head>
 
 <body>
-    <script>
-
-        function playerInput(){
-            let playerSelection;
-            while (true){
-                playerSelection = prompt("Rock, Paper or Scissors?").toLowerCase();
-                if(playerSelection.localeCompare('rock') == 0 || playerSelection.localeCompare('paper') == 0
-                || playerSelection.localeCompare('scissors') == 0) {
-                    break;
-                }
-            }
-            return playerSelection;
-        }
-
-        function computerPlay() {
-            let random = Math.floor(Math.random() * 10 + 1);
-            if (random >= 1 && random < 3) {
-                return 'rock';
-            } else if (random >= 3 && random < 6) {
-                return 'paper';
-            }
-            return 'scissors';
-
-        }
-        
-        function playRound(playerSelection, computerSelection) {
-
-            if (playerSelection.localeCompare(computerSelection) != 0) {
-                switch (playerSelection) {
-                    case 'rock':
-                            if (computerSelection == 'scissors') {
-                                return "You win! Rock beats Scissors"
-                            }
-                            return "You lose! Paper beats Rock"
-                        break;
-                    case 'paper':
-                            if (computerSelection == 'rock') {
-                                return "You win! Paper beats Rock"
-                            }
-                            return "You lose! Scissors beats Paper"
-                        break;
-                    case 'scissors':
-                            if (computerSelection == 'paper') {
-                                return "You win! Scissors beats Paper"
-                            }
-                            return "You lose! Rock beats Scissors"
-                        break;
-                }
-            }
-            return "Draw!";
-        }
-
-        function game(){
-            let playerScore = 0;
-            let computerScore = 0;
-            for(let i = 0; i < 5; i++){
-                let computerSelection = computerPlay();
-                let playerSelection = playerInput();
-                let result = playRound(playerSelection, computerSelection);
-                console.log(result);
-                if( result.includes('win') ){
-                    playerScore++;
-                } else if ( result.includes('lose') ){
-                    computerScore++;
-                }
-            }
-
-            if(playerScore > computerScore){
-                return "You are the winner!";
-            } else if (playerScore < computerScore){
-                return "You are the loser!";
-            } else if (playerScore == computerScore){
-                return "Draw!";
-            }
-        }
-
-        console.log(game());
-
-    </script>
+    <div class="buttons">
+        <h1 class="title">Play a round!</h1>
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+    </div>
+    <div class="scores">
+        <h1 class="result"></h1>
+        <h1 class="score">COMPUTER SCORE: <span class="computer-score">0</span> </h1>
+        <h1 class="score">YOUR SCORE: <span class="player-score">0</span> </h1>
+    </div>
+    
 </body>
+<script src="./logic.js"></script>
 
 </html>
